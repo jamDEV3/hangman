@@ -1,0 +1,23 @@
+canvas {
+    border: 1px solid;
+}
+
+.container {
+    display: flex;
+}
+
+button {
+    padding: 10px;
+    margin: 5px;
+    background-color: rgb(120, 119, 218);
+    border: 3px solid;
+    border-radius: 3px;
+    border-color: rgb(168, 168, 245);
+    color: rgb(168, 168, 245);
+}
+
+button:hover {
+    background-color: rgb(168, 168, 245);
+    border-color: rgb(120, 119, 218);
+    color: rgb(120, 119, 218);
+}
