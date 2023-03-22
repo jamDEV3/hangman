@@ -13,7 +13,7 @@ let alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
 let buttonGen = () => {
 
     // For loop for each letter
-    for (let i = 0; i <alphabet.length; i++) {
+    for (i = 0; i <alphabet.length; i++) {
         letters = document.createElement('button');
         letters.innerHTML = alphabet[i].toUpperCase();
         letters.id = alphabet[i];
@@ -32,33 +32,52 @@ let randomWord = () => {
     for (let i = 0; i < randomWordGen.length; i++) {
         
         // Adds all letters from word to another list
-        wordLetters.push(randomWordGen[i]);
         wordSpan = document.createElement('span');
-        wordSpan.innerHTML = '*';
+        wordSpan.id = i;
+        wordLetters.push(randomWordGen[i]);
+        wordSpan.innerHTML += '*';
         wordSpace.appendChild(wordSpan);
     }
 
 
+    // Button listener
     alphaButtons.addEventListener('click', (e) => {
+
+        //Preventative measure to make sure click isn't assigned to the div container instead of the buttons
         const isButton = e.target.nodeName === 'BUTTON';
         if (!isButton) {
             return;
         }
 
-        if (wordLetters.includes(e.target.id)) { 
+        if (wordLetters.includes(e.target.id)) {
             console.log('YAY');
+            correctLet = e.target.id;
+
+            for (i = 0; i < wordLetters.length; i++) {
+                if (wordLetters[i] == correctLet) {
+                    replaceLet = document.getElementById(i);
+                    replaceLet.innerHTML -= '*';
+                    replaceLet.innerHTML = correctLet;
+                }
+            }
         }
 
         else {
-            console.log('NAY');
+            hangmanDraw();
         }
     });
 
     console.log(wordLetters);
 }
 
-randomWord();
+let hangmanDraw = () => {
+
+}
 
 buttonGen();
+
+randomWord();
+
+hangmanDraw();
 
 // Checks for letter in word that has been generated each time a button has been pressed
