@@ -1,4 +1,5 @@
 const btn = document.querySelectorAll('button');
+const alphaButtons = document.getElementById('buttons');
 
 // Choice of random words
 let words = ['janitor', 'reference', 'zion', 'subway', 'faithful', 'anagram', 'rainforest', 'canine', 'festival'];
@@ -9,8 +10,7 @@ let wordLetters = [];
 let alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y' , 'z'];
 
 // Creates buttons for each letter of alphabet
-let buttons = () => {
-    alphaButtons = document.getElementById('buttons');
+let buttonGen = () => {
 
     // For loop for each letter
     for (let i = 0; i <alphabet.length; i++) {
@@ -38,25 +38,27 @@ let randomWord = () => {
         wordSpace.appendChild(wordSpan);
     }
 
-    console.log(wordLetters);
-}
 
-// Checks for letter in word that has been generated each time a button has been pressed
+    alphaButtons.addEventListener('click', (e) => {
+        const isButton = e.target.nodeName === 'BUTTON';
+        if (!isButton) {
+            return;
+        }
 
-//Currently not working :(
-btn.forEach((select) => {
-    select.addEventListener('click', (e) => {
-        if (wordLetters.includes(e.target.id)) {
+        if (wordLetters.includes(e.target.id)) { 
             console.log('YAY');
         }
 
         else {
             console.log('NAY');
         }
-    })
-})
+    });
 
+    console.log(wordLetters);
+}
 
 randomWord();
 
-buttons();
+buttonGen();
+
+// Checks for letter in word that has been generated each time a button has been pressed
