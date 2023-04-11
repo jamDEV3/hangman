@@ -6,6 +6,8 @@ let words = ['janitor', 'reference', 'zion', 'subway', 'faithful', 'anagram', 'r
 
 let wordLetters = [];
 
+let mistakeCount = [];
+
 // List of all letters in the alphabet to choose from
 let alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y' , 'z'];
 
@@ -63,15 +65,90 @@ let randomWord = () => {
         }
 
         else {
-            hangmanDraw();
+            mistakeCount.push("x");
+            mis = mistakeCount.length;
+            hangmanDraw(mis);
         }
     });
 
     console.log(wordLetters);
 }
 
-let hangmanDraw = () => {
+let hangmanDraw = (wrongAnswer) => {
+    let c = document.getElementById('myCanvas');
+    let ctx = c.getContext("2d");
+        
+    switch (wrongAnswer) {
+        case 1:
+            ctx.beginPath();
+            ctx.moveTo(100, 100);
+            ctx.lineTo(200, 100);
+            ctx.stroke();
+            break;
 
+        case 2:
+            ctx.beginPath();
+            ctx.moveTo(100, 0);
+            ctx.lineTo(100, 100);
+            ctx.stroke();
+            break;
+
+        case 3:
+            ctx.beginPath();
+            ctx.moveTo(100, 0);
+            ctx.lineTo(150, 0);
+            ctx.stroke();
+            break;
+        
+        case 4:
+            ctx.beginPath();
+            ctx.moveTo(150, 0);
+            ctx.lineTo(150, 25);
+            ctx.stroke();
+            break;
+
+        case 5:
+            ctx.beginPath();
+            ctx.arc(150, 30, 5, 0, 2 * Math.PI);
+            ctx.stroke();
+            break;
+
+        case 6:
+            ctx.beginPath();
+            ctx.moveTo(150, 35);
+            ctx.lineTo(150, 60);
+            ctx.stroke();
+            break;
+
+        case 7:
+            ctx.beginPath();
+            ctx.moveTo(150, 40);
+            ctx.lineTo(140, 40);
+            ctx.stroke();
+            break;
+
+        case 8:
+            ctx.beginPath();
+            ctx.moveTo(150, 40);
+            ctx.lineTo(160, 40);
+            ctx.stroke();
+            break;
+
+        case 9:
+            ctx.beginPath();
+            ctx.moveTo(150, 60);
+            ctx.lineTo(140, 70);
+            ctx.stroke();
+            break;
+
+        case 10:
+            ctx.beginPath();
+            ctx.moveTo(150, 60);
+            ctx.lineTo(160, 70);
+            ctx.stroke();
+            console.log("GAME OVER");
+            break;
+    }
 }
 
 buttonGen();
