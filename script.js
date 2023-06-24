@@ -2,7 +2,7 @@ const btn = document.querySelectorAll('button');
 const alphaButtons = document.getElementById('buttons');
 
 // Choice of random words
-let words = ['janitor', 'reference', 'zion', 'subway', 'faithful', 'anagram', 'rainforest', 'canine', 'festival'];
+let words = ['janitor', 'reference', 'zion', 'subway', 'faithful', 'anagram', 'rainforest', 'canine', 'festival', 'hexagon', 'portcullis', 'delicate', 'upon', 'panagea'];
 
 let wordLetters = [];
 
@@ -60,6 +60,13 @@ let randomWord = () => {
                     replaceLet = document.getElementById(i);
                     replaceLet.innerHTML -= '*';
                     replaceLet.innerHTML = correctLet;
+                }
+            }
+
+            for (i = 0; i < alphabet.length; i++) {
+                if (alphabet[i] == correctLet) {
+                    buttonInactive = document.getElementById(correctLet);
+                    buttonInactive.disabled = true;
                 }
             }
         }

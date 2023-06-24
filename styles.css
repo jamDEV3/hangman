@@ -21,3 +21,9 @@ button:hover {
     border-color: rgb(120, 119, 218);
     color: rgb(120, 119, 218);
 }
+
+button:disabled {
+    background-color: rgb(139, 139, 143);
+    border-color: rgb(139, 139, 143);
+    color: rgb(98, 98, 100);
+}
