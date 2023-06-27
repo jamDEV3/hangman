@@ -2,7 +2,7 @@ const btn = document.querySelectorAll('button');
 const alphaButtons = document.getElementById('buttons');
 
 // Choice of random words
-let words = ['janitor', 'reference', 'zion', 'subway', 'faithful', 'anagram', 'rainforest', 'canine', 'festival', 'hexagon', 'portcullis', 'delicate', 'upon', 'panagea'];
+let words = ['janitor', 'reference', 'zion', 'subway', 'faithful', 'anagram', 'rainforest', 'canine', 'festival', 'hexagon', 'portcullis', 'delicate', 'upon', 'pangaea'];
 
 let wordLetters = [];
 
@@ -23,6 +23,21 @@ let buttonGen = () => {
     }
 }
 
+let winGame = () => {
+
+    // When all letters have been guessed correctly, win the game
+    if (!wordSpan.innerHTML.includes("*")) {
+        alert("You win!");
+    }
+
+}
+
+let loseGame = () => {
+
+    // When all stages of the hangman have been displayed, lose the game
+    alert("You lose!");
+}
+
 // Generates random word from 'words' list
 let randomWord = () => {
     let randomGen = Math.floor(Math.random() * words.length);
@@ -41,7 +56,6 @@ let randomWord = () => {
         wordSpace.appendChild(wordSpan);
     }
 
-
     // Button listener
     alphaButtons.addEventListener('click', (e) => {
 
@@ -51,31 +65,35 @@ let randomWord = () => {
             return;
         }
 
+        // Declares button press event with letter in alphabet
+        letterChoice = e.target.id;
+        buttonChoice = document.getElementById(letterChoice);
+
         if (wordLetters.includes(e.target.id)) {
-            console.log('YAY');
-            correctLet = e.target.id;
 
             for (i = 0; i < wordLetters.length; i++) {
-                if (wordLetters[i] == correctLet) {
-                    replaceLet = document.getElementById(i);
-                    replaceLet.innerHTML -= '*';
-                    replaceLet.innerHTML = correctLet;
-                }
-            }
 
-            for (i = 0; i < alphabet.length; i++) {
-                if (alphabet[i] == correctLet) {
-                    buttonInactive = document.getElementById(correctLet);
-                    buttonInactive.disabled = true;
+                    replaceLet = document.getElementById(i);
+
+                    if (wordLetters[i] == letterChoice) {
+                    replaceLet.innerHTML -= '*';
+                    replaceLet.innerHTML = letterChoice;
                 }
             }
         }
 
+        // If the button pressed isn't found in the word, mistake is made
         else {
             mistakeCount.push("x");
-            mis = mistakeCount.length;
-            hangmanDraw(mis);
+            mistake = mistakeCount.length;
+
+            // Runs hangman draw function
+            hangmanDraw(mistake);
         }
+        
+        // Deactivates button choice on press
+        buttonChoice.disabled = true;
+
     });
 
     console.log(wordLetters);
@@ -153,7 +171,7 @@ let hangmanDraw = (wrongAnswer) => {
             ctx.moveTo(150, 60);
             ctx.lineTo(160, 70);
             ctx.stroke();
-            console.log("GAME OVER");
+            loseGame();
             break;
     }
 }
