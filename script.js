@@ -8,6 +8,8 @@ let wordLetters = [];
 
 let mistakeCount = [];
 
+let letterCount = [];
+
 // List of all letters in the alphabet to choose from
 let alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y' , 'z'];
 
@@ -26,10 +28,10 @@ let buttonGen = () => {
 let winGame = () => {
 
     // When all letters have been guessed correctly, win the game
-    if (!wordSpan.innerHTML.includes("*")) {
+
+    if (letterCount.length == 0) {
         alert("You win!");
     }
-
 }
 
 let loseGame = () => {
@@ -42,18 +44,19 @@ let loseGame = () => {
 let randomWord = () => {
     let randomGen = Math.floor(Math.random() * words.length);
     let randomWordGen = words[randomGen];
-    console.log(randomWordGen);
     let wordSpace = document.getElementById('word');
 
     // Displays encrypted word
     for (let i = 0; i < randomWordGen.length; i++) {
         
         // Adds all letters from word to another list
+        letterCount.push('*');
         wordSpan = document.createElement('span');
         wordSpan.id = i;
         wordLetters.push(randomWordGen[i]);
         wordSpan.innerHTML += '*';
         wordSpace.appendChild(wordSpan);
+
     }
 
     // Button listener
@@ -78,6 +81,9 @@ let randomWord = () => {
                     if (wordLetters[i] == letterChoice) {
                     replaceLet.innerHTML -= '*';
                     replaceLet.innerHTML = letterChoice;
+                    letterCount.pop('*');
+
+                    winGame();
                 }
             }
         }
@@ -96,7 +102,6 @@ let randomWord = () => {
 
     });
 
-    console.log(wordLetters);
 }
 
 let hangmanDraw = (wrongAnswer) => {
@@ -106,70 +111,70 @@ let hangmanDraw = (wrongAnswer) => {
     switch (wrongAnswer) {
         case 1:
             ctx.beginPath();
-            ctx.moveTo(100, 100);
-            ctx.lineTo(200, 100);
+            ctx.moveTo(75, 150);
+            ctx.lineTo(225, 150);
             ctx.stroke();
             break;
-
+        
         case 2:
             ctx.beginPath();
-            ctx.moveTo(100, 0);
-            ctx.lineTo(100, 100);
+            ctx.moveTo(75, 0);
+            ctx.lineTo(75, 150);
             ctx.stroke();
             break;
 
         case 3:
             ctx.beginPath();
-            ctx.moveTo(100, 0);
-            ctx.lineTo(150, 0);
+            ctx.moveTo(75, 0);
+            ctx.lineTo(225, 0);
             ctx.stroke();
             break;
         
         case 4:
             ctx.beginPath();
-            ctx.moveTo(150, 0);
-            ctx.lineTo(150, 25);
+            ctx.moveTo(225, 0);
+            ctx.lineTo(225, 37.5);
             ctx.stroke();
             break;
 
         case 5:
             ctx.beginPath();
-            ctx.arc(150, 30, 5, 0, 2 * Math.PI);
+            ctx.arc(225, 45, 7.5, 0, 2 * Math.PI);
             ctx.stroke();
             break;
 
         case 6:
             ctx.beginPath();
-            ctx.moveTo(150, 35);
-            ctx.lineTo(150, 60);
+            ctx.moveTo(225, 52.5);
+            ctx.lineTo(225, 90);
             ctx.stroke();
             break;
 
         case 7:
             ctx.beginPath();
-            ctx.moveTo(150, 40);
-            ctx.lineTo(140, 40);
+            ctx.moveTo(225, 60);
+            ctx.lineTo(210, 60);
             ctx.stroke();
             break;
 
         case 8:
             ctx.beginPath();
-            ctx.moveTo(150, 40);
-            ctx.lineTo(160, 40);
+            ctx.moveTo(225, 60);
+            ctx.lineTo(240, 60);
             ctx.stroke();
             break;
 
         case 9:
             ctx.beginPath();
-            ctx.moveTo(150, 60);
-            ctx.lineTo(140, 70);
+            ctx.moveTo(225, 90);
+            ctx.lineTo(210, 105);
             ctx.stroke();
             break;
 
         case 10:
             ctx.beginPath();
-            ctx.moveTo(150, 60);
-            ctx.lineTo(160, 70);
+            ctx.moveTo(225, 90);
+            ctx.lineTo(240, 105);
             ctx.stroke();
             loseGame();
             break;

@@ -8,16 +8,22 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hangman!</h1>
+    <header>
+        <h1>Hangman!</h1>
+    </header>
     <div class="container">
+        <div class="flexbox">
             <div id="buttons"></div>
             <div>
                 <p id="word"></p>
             </div>
             <canvas id="myCanvas"></canvas>
+        </div>
     </div>
     
     <script src="script.js" defer></script>
+
+    <input type ="button" value="RESET" onClick="window.location.reload();"></button>
 
 </body>
 </html>

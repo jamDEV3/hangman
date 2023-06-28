@@ -1,23 +1,54 @@
-canvas {
-    border: 1px solid;
-}
-
-/* .container {
-
-} */
-
 body {
     text-align: center;
+    font-size: 16pt;
+    background-color: rgb(202, 184, 218);
 }
 
-#buttons {
+header {
     display: flex;
     justify-content: center;
 }
 
-button {
+h1 {
+    background-color: white;
+    border-radius: 10px;
+    width: 200px;
     padding: 10px;
-    margin: 5px;
+}
+
+canvas {
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    background-color: white;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+#word {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+/* Button Container */
+#buttons {
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 550px;
+}
+
+button, input {
+    padding: 10px;
+    margin: 10px;
+    font-size: 16pt;
     background-color: rgb(120, 119, 218);
     border: 3px solid;
     border-radius: 3px;
@@ -25,7 +56,14 @@ button {
     color: rgb(168, 168, 245);
 }
 
-button:hover {
+input {
+    padding: 20px;
+    width: 300px;
+    font-size: 20pt;
+    border-radius: 10px;
+}
+
+button:hover, input:hover {
     background-color: rgb(168, 168, 245);
     border-color: rgb(120, 119, 218);
     color: rgb(120, 119, 218);
